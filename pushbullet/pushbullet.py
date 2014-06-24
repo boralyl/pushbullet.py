@@ -47,15 +47,11 @@ class PushBullet(object):
         return self._devices
 
     def get(self, query):
-        if isinstance(query, integer_type):
-            device = list(filter(lambda x: x.device_id == query, self._devices))
-            if not device:
-                return None
-            else:
-                return device[0]
+        device = list(filter(lambda x: x.device_id == query, self._devices))
+        if not device:
+            return None
+        else:
+            return device[0]
 
     def __getitem__(self, device_id):
-        if not isinstance(device_id, integer_type):
-            raise TypeError("device_id must be an integer")
-        else:
-            return self.get(device_id)
+        return self.get(device_id)
